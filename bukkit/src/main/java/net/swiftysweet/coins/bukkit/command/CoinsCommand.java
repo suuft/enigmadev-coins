@@ -4,7 +4,6 @@ import com.google.common.base.Joiner;
 import lombok.NonNull;
 import net.swiftysweet.coins.api.EnigmaCoins;
 import net.swiftysweet.coins.api.EnigmaCoinsProvider;
-import net.swiftysweet.coins.api.util.Instances;
 import net.swiftysweet.coins.bukkit.EnigmaCoinsBukkit;
 import net.swiftysweet.coins.bukkit.command.api.YCommand;
 import org.bukkit.ChatColor;
@@ -40,7 +39,7 @@ public class CoinsCommand extends YCommand<CommandSender> {
             case "take":
             case "remove":
             case "rem": {
-                if (sender.hasPermission("enigmacoins.admin")) {
+                if (!sender.hasPermission("enigmacoins.admin")) {
                     sender.sendMessage(msg("DontHasPermission").replace("$permission", "enigmacoins.admin"));
                     return;
                 }
@@ -63,7 +62,7 @@ public class CoinsCommand extends YCommand<CommandSender> {
             case "give":
             case "add":
             case "append": {
-                if (sender.hasPermission("enigmacoins.admin")) {
+                if (!sender.hasPermission("enigmacoins.admin")) {
                     sender.sendMessage(msg("DontHasPermission").replace("$permission", "enigmacoins.admin"));
                     return;
                 }
@@ -86,7 +85,7 @@ public class CoinsCommand extends YCommand<CommandSender> {
             case "set":
             case "install":
             case "s": {
-                if (sender.hasPermission("enigmacoins.admin")) {
+                if (!sender.hasPermission("enigmacoins.admin")) {
                     sender.sendMessage(msg("DontHasPermission").replace("$permission", "enigmacoins.admin"));
                     return;
                 }
@@ -121,7 +120,7 @@ public class CoinsCommand extends YCommand<CommandSender> {
         return ChatColor.translateAlternateColorCodes('&', Joiner.on("\n").join(getConfig().getStringList("EnigmaCoins.Messages.Help")));
     }
     private FileConfiguration getConfig() {
-        return Instances.getInstance(EnigmaCoinsBukkit.class).getConfig();
+        return EnigmaCoinsBukkit.getInstance().getConfig();
     }
 
 }

@@ -1,16 +1,16 @@
 package net.swiftysweet.coins.api;
 
 import lombok.experimental.UtilityClass;
-import net.swiftysweet.coins.api.util.Instances;
 
 @UtilityClass
 public class EnigmaCoinsProvider {
 
+    private EnigmaCoins instance;
     public EnigmaCoins get() {
-        return Instances.getInstance(EnigmaCoins.class);
+        return instance;
     }
 
     public void register(EnigmaCoins coins) {
-        Instances.addInstance(coins);
+        instance = coins;
     }
 }

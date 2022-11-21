@@ -1,7 +1,6 @@
 package net.swiftysweet.coins.bukkit.listener;
 
 import lombok.NonNull;
-import net.swiftysweet.coins.api.util.Instances;
 import net.swiftysweet.coins.bukkit.EnigmaCoinsBukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
@@ -11,7 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class CoinsUpdateListener implements Listener {
 
     private EnigmaCoinsBukkit getPlugin() {
-        return Instances.getInstance(EnigmaCoinsBukkit.class);
+        return EnigmaCoinsBukkit.getInstance();
     }
 
     @EventHandler

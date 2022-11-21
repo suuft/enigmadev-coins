@@ -40,11 +40,11 @@ EnigmaCoins:
   # [EN] :: Plugin messages.
   # [RU] :: Сообщения плагина.
   Messages:
-    Balance: "&5&lEnigmaCoins &7:: &fВаш баланс в коинах - &e$player_balance"
+    Balance: "&d&lEnigmaCoins &7:: &fВаш баланс в коинах - &e$player_balance"
     DontHasPermission: "&c&lEnigmaCoins &7:: &fУ вас нет права на это! &7($permission)"
-    BalanceOther: "&5&lEnigmaCoins &7:: &fБаланс игрока - &e$player_balance"
+    BalanceOther: "&d&lEnigmaCoins &7:: &fБаланс игрока - &e$player_balance"
     Help:
-    - "&5&lEnigmaCoins &7:: &fПомощь по плагину:"
+    - "&d&lEnigmaCoins &7:: &fПомощь по плагину:"
     - "&8* &7Узнать свой баланс - &f/coins"
     - "&8* &7Узнать баланс игрока - &f/coins <никнейм>"
     - "&8* &7Установить баланс игроку - &f/coins set <никнейм> <число>"
@@ -52,6 +52,6 @@ EnigmaCoins:
     - "&8* &7Уменьшить баланс игроку - &f/coins take <никнейм> <число>"
     TakeUsage: "&c&lEnigmaCoins &7:: &fИспользование - &e/coins take <никнейм> <число>"
     NotNumber: "&c&lEnigmaCoins &7:: &fТретим аргументом должно быть число."
-    Success: "&5&lEnigmaCoins &7:: &fГотово, теперь баланс игрока - &e$player_balance"
+    Success: "&d&lEnigmaCoins &7:: &fГотово, теперь баланс игрока - &e$player_balance"
     GiveUsage: "&c&lEnigmaCoins &7:: &fИспользование - &e/coins give <никнейм> <число>"
     SetUsage: "&c&lEnigmaCoins &7:: &fИспользование - &e/coins set <никнейм> <число>"

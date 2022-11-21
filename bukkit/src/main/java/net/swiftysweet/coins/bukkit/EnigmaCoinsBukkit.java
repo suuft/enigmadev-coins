@@ -2,7 +2,6 @@ package net.swiftysweet.coins.bukkit;
 
 import lombok.Getter;
 import net.swiftysweet.coins.api.EnigmaCoinsProvider;
-import net.swiftysweet.coins.api.util.Instances;
 import net.swiftysweet.coins.bukkit.command.CoinsCommand;
 import net.swiftysweet.coins.bukkit.command.api.CommandManager;
 import net.swiftysweet.coins.bukkit.listener.CoinsCacheListener;
@@ -24,32 +23,39 @@ import java.net.URLConnection;
 @Getter
 public class EnigmaCoinsBukkit extends JavaPlugin {
 
+    @Getter
+    private static EnigmaCoinsBukkit instance;
     private Executor database;
     private String latestVersion;
 
     @Override
+    public void onLoad() {
+        instance = this;
+    }
+
+    @Override
     public void onEnable() {
         getLogger().info("Enabling EnigmaCoins v" + getDescription().getName());
+        saveDefaultConfig();
         getLogger().info("Try connect to MySQL database..");
 
         database = Executor.getExecutor(SQLConnection.newBuilder()
-                .setHost(getConfig().getString("MySql.Host"))
-                .setPort(getConfig().getInt("MySql.Port"))
-                .setUsername(getConfig().getString("MySql.User"))
-                .setPassword(getConfig().getString("MySql.Password"))
-                .setDatabase(getConfig().getString("MySql.Database"))
+                .setHost(getConfig().getString("EnigmaCoins.MySql.Host"))
+                .setPort(getConfig().getInt("EnigmaCoins.MySql.Port"))
+                .setUsername(getConfig().getString("EnigmaCoins.MySql.User"))
+                .setPassword(getConfig().getString("EnigmaCoins.MySql.Password"))
+                .setDatabase(getConfig().getString("EnigmaCoins.MySql.Database"))
 
                 .createTable("EnigmaCoins", "`Name` VARCHAR(32) NOT NULL PRIMARY KEY, `Coins` INT NOT NULL DEFAULT '0'")
                 .build());
         getLogger().info("Plugin has successfully connected to MySQL database..");
 
-        EnigmaCoinsProvider.register(getConfig().getBoolean("MySql.Caching") ?
+        EnigmaCoinsProvider.register(getConfig().getBoolean("EnigmaCoins.MySql.Caching") ?
                         new EnigmaCachedCoinsMysql(database) : new EnigmaCoinsMySql(database));
 
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) new CoinsPlaceholder().register();
-        if (getConfig().getBoolean("MySql.Caching")) getServer().getPluginManager().registerEvents(new CoinsCacheListener(), this);
-        new CoinsCommand(getConfig().getStringList("")).register(this);
-        Instances.addInstance(this);
+        if (getConfig().getBoolean("EnigmaCoins.MySql.Caching")) getServer().getPluginManager().registerEvents(new CoinsCacheListener(), this);
+        new CoinsCommand(getConfig().getStringList("EnigmaCoins.CoinsAliases")).register(this);
 
         getLogger().info("Plugin has successfully enabled!");
 

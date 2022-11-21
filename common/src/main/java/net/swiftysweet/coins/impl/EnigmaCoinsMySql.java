@@ -27,6 +27,6 @@ public class EnigmaCoinsMySql implements EnigmaCoins {
 
     @Override
     public void setCoins(@NonNull String name, int coins) {
-        mysql.execute(true, "INSERT INTO `EnigmaCoins`(`Name`, `Coins`) VALUES (\"?\", ?) ON DUPLICATE KEY UPDATE `Coins` = ?", name.toLowerCase(Locale.ROOT), coins, coins);
+        mysql.execute(true, "INSERT INTO `EnigmaCoins`(`Name`, `Coins`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `Coins` = ?", name.toLowerCase(Locale.ROOT), coins, coins);
     }
 }
