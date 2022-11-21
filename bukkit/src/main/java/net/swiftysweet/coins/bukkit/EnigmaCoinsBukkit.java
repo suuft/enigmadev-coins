@@ -4,7 +4,9 @@ import lombok.Getter;
 import net.swiftysweet.coins.api.EnigmaCoinsProvider;
 import net.swiftysweet.coins.api.util.Instances;
 import net.swiftysweet.coins.bukkit.command.CoinsCommand;
+import net.swiftysweet.coins.bukkit.command.api.CommandManager;
 import net.swiftysweet.coins.bukkit.listener.CoinsCacheListener;
+import net.swiftysweet.coins.bukkit.listener.CoinsUpdateListener;
 import net.swiftysweet.coins.bukkit.placeholder.CoinsPlaceholder;
 import net.swiftysweet.coins.impl.EnigmaCachedCoinsMysql;
 import net.swiftysweet.coins.impl.EnigmaCoinsMySql;
@@ -13,10 +15,17 @@ import net.swiftysweet.coins.mysql.SQLConnection;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+@Getter
 public class EnigmaCoinsBukkit extends JavaPlugin {
 
-    @Getter
     private Executor database;
+    private String latestVersion;
 
     @Override
     public void onEnable() {
@@ -44,10 +53,38 @@ public class EnigmaCoinsBukkit extends JavaPlugin {
 
         getLogger().info("Plugin has successfully enabled!");
 
+        if (getConfig().getBoolean("EnigmaCoins.CheckUpdates", true))  {
+            checkUpdates();
+            getServer().getPluginManager().registerEvents(new CoinsUpdateListener(), this);
+
+        }
     }
 
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(this);
+        CommandManager.unregisterCommand("enigmacoins");
+        getLogger().info("Plugin has successfully disabled!");
+
+    }
+
+    private void checkUpdates() {
+        try {
+            getLogger().info("Checking for updates...");
+            URL url = new URL( "https://raw.githubusercontent.com/swiftysweet/enigmadev-coins/master/VERSION");
+            URLConnection conn = url.openConnection();
+            conn.setConnectTimeout(1200);
+            conn.setReadTimeout(1200);
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                latestVersion = in.readLine().trim();
+                if (!latestVersion.equalsIgnoreCase(getDescription().getVersion())) {
+                    getLogger().warning("You have an outdated version of EnigmaCoins on your server. Update - https://google.com");
+                } else {
+                    getLogger().info("You have the latest version of EnigmaCoins on your server.");
+                }
+            }
+        } catch (IOException e) {
+            getLogger().warning("Error checking for updates. Please try again later");
+        }
     }
 }
