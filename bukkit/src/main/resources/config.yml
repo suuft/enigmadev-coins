@@ -1,0 +1,57 @@
+# ███████╗███╗░░██╗██╗░██████╗░███╗░░░███╗░█████╗░░░░█████╗░░█████╗░██╗███╗░░██╗░██████╗
+# ██╔════╝████╗░██║██║██╔════╝░████╗░████║██╔══██╗░░██╔══██╗██╔══██╗██║████╗░██║██╔════╝
+# █████╗░░██╔██╗██║██║██║░░██╗░██╔████╔██║███████║░░██║░░╚═╝██║░░██║██║██╔██╗██║╚█████╗░
+# ██╔══╝░░██║╚████║██║██║░░╚██╗██║╚██╔╝██║██╔══██║░░██║░░██╗██║░░██║██║██║╚████║░╚═══██╗
+# ███████╗██║░╚███║██║╚██████╔╝██║░╚═╝░██║██║░░██║░░╚█████╔╝╚█████╔╝██║██║░╚███║██████╔╝
+# ╚══════╝╚═╝░░╚══╝╚═╝░╚═════╝░╚═╝░░░░░╚═╝╚═╝░░╚═╝░░░╚════╝░░╚════╝░╚═╝╚═╝░░╚══╝╚═════╝░
+# [EN] :: Plugin version: 1.0 | Plugin author: swiftysweet. | www.enigmastudio.space
+# [RU] :: Версия плагина: 1.0 | Автор плагина: swiftysweet. | www.enigmastudio.space
+# -
+# [EN] :: Permissions | [RU] :: Права плагина
+# + enigmacoins.balance - Право на получение своего баланса
+# + enigmacoins.balance.others - Право на просмотр чужого баланса
+# + enigmacoins.admin - Право на управление плагином, забирать, выдавать деньги
+# PlaceholderAPI Placeholders: %enigmacoins_balance%
+EnigmaCoins:
+  # [EN] :: MySQL is required for the plugin to work.
+  # [RU] :: На данный момент для работы плагина необходим MySql.
+  MySql:
+    Host: "localhost"
+    User: "admin"
+    Port: 3306
+    Password: "swiftysweet"
+    Database: "enigmacoins"
+    # [RU] :: Локальное кеширование. Может положительно влиять на скорость запросов. Но может быть рассинхрон.
+    # [EN] :: Local caching. It can positively affect the speed of requests. But it may be out of sync.
+    Caching: true
+  # [EN] :: Do you need to check for updates when launching the plugin?
+  # [RU] :: Нужна ли вам проверка обновлений при запуске плагина?
+  CheckUpdates: true
+  # [EN] :: Notifying players about the new version of the plugin.
+  # [RU] :: Оповещение игроков о новой версии плагина.
+  NotifyAboutUpdates: true
+  # [EN] :: Aliases for the main plugin command.
+  # [RU] :: Алиасы для основной команды плагина.
+  CoinsAliases:
+  - "coins"
+  - "ecoins"
+  - "coin"
+  - "коины"
+  # [EN] :: Plugin messages.
+  # [RU] :: Сообщения плагина.
+  Messages:
+    Balance: "&5&lEnigmaCoins &7:: &fВаш баланс в коинах - &e$player_balance"
+    DontHasPermission: "&c&lEnigmaCoins &7:: &fУ вас нет права на это! &7($permission)"
+    BalanceOther: "&5&lEnigmaCoins &7:: &fБаланс игрока - &e$player_balance"
+    Help:
+    - "&5&lEnigmaCoins &7:: &fПомощь по плагину:"
+    - "&8* &7Узнать свой баланс - &f/coins"
+    - "&8* &7Узнать баланс игрока - &f/coins <никнейм>"
+    - "&8* &7Установить баланс игроку - &f/coins set <никнейм> <число>"
+    - "&8* &7Добавить баланс игроку - &f/coins give <никнейм> <число>"
+    - "&8* &7Уменьшить баланс игроку - &f/coins take <никнейм> <число>"
+    TakeUsage: "&c&lEnigmaCoins &7:: &fИспользование - &e/coins take <никнейм> <число>"
+    NotNumber: "&c&lEnigmaCoins &7:: &fТретим аргументом должно быть число."
+    Success: "&5&lEnigmaCoins &7:: &fГотово, теперь баланс игрока - &e$player_balance"
+    GiveUsage: "&c&lEnigmaCoins &7:: &fИспользование - &e/coins give <никнейм> <число>"
+    SetUsage: "&c&lEnigmaCoins &7:: &fИспользование - &e/coins set <никнейм> <число>"

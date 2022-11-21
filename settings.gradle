@@ -1,0 +1,5 @@
+rootProject.name = 'enigmadev-coins'
+include 'api'
+include 'common'
+include 'bukkit'
+

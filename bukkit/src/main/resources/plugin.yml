@@ -1,0 +1,16 @@
+# ███████╗███╗░░██╗██╗░██████╗░███╗░░░███╗░█████╗░░░░█████╗░░█████╗░██╗███╗░░██╗░██████╗
+# ██╔════╝████╗░██║██║██╔════╝░████╗░████║██╔══██╗░░██╔══██╗██╔══██╗██║████╗░██║██╔════╝
+# █████╗░░██╔██╗██║██║██║░░██╗░██╔████╔██║███████║░░██║░░╚═╝██║░░██║██║██╔██╗██║╚█████╗░
+# ██╔══╝░░██║╚████║██║██║░░╚██╗██║╚██╔╝██║██╔══██║░░██║░░██╗██║░░██║██║██║╚████║░╚═══██╗
+# ███████╗██║░╚███║██║╚██████╔╝██║░╚═╝░██║██║░░██║░░╚█████╔╝╚█████╔╝██║██║░╚███║██████╔╝
+# ╚══════╝╚═╝░░╚══╝╚═╝░╚═════╝░╚═╝░░░░░╚═╝╚═╝░░╚═╝░░░╚════╝░░╚════╝░╚═╝╚═╝░░╚══╝╚═════╝░
+# [EN] :: Plugin version: 1.0 | Plugin author: swiftysweet. | www.enigmastudio.space
+# [RU] :: Версия плагина: 1.0 | Автор плагина: swiftysweet. | www.enigmastudio.space
+name: EnigmaCoins
+author: swiftysweet
+version: 1.0
+main: net.swiftysweet.coins.bukkit.EnigmaCoinsBukkit
+website: www.enigmastudio.space
+description: That plugin will add a second economy independent of Vault.
+softdepend:
+  - PlaceholderAPI
